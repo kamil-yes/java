@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Java</string>
+    <string name="list_title">List of aircrafts</string>
+    <string name="add_button">Add</string>
+    <string name="adding_aircraft">Adding aircraft</string>
+    <string name="name">Name</string>
+    <string name="model">Model</string>
+    <string name="creation_year">Creation year</string>
+    <string name="inspection_year">Inspection year</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="editing_aircraft">Editing aircraft</string>
+</resources>
