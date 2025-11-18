@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@+id/listAircraftsFragment">
+
+    <fragment
+        android:id="@+id/listAircraftsFragment"
+        android:name="com.kamil.java.ListAircraftsFragment"
+        android:label="fragment_list_aircrafts"
+        tools:layout="@layout/fragment_list_aircrafts" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.kamil.java.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+</navigation>

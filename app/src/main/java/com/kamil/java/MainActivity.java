@@ -1,49 +1,31 @@
 package com.kamil.java;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private ListAdapter adapter;
+    private NavController navController;
+    protected BottomNavigationView bottomNavigationView;
+    protected FragmentContainerView fragmentContainerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        DBAdapter dbAdapter = new DBAdapter(this).open();
-        List<Aircraft> aircrafts = dbAdapter.getAircrafts();
-        dbAdapter.close();
-
-        RecyclerView list = findViewById(R.id.list);
-        adapter = new ListAdapter(this, aircrafts);
-        list.setAdapter(adapter);
-
-        Button addAircraft = findViewById(R.id.add);
-        addAircraft.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddAircraft.class);
-            startActivity(intent);
-        });
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    protected void onResume() {
-        super.onResume();
-        DBAdapter dbAdapter = new DBAdapter(this).open();
-        adapter.list = dbAdapter.getAircrafts();
-        adapter.notifyDataSetChanged();
-        dbAdapter.close();
+        bottomNavigationView=findViewById(R.id.bottomNavigationView);
+        fragmentContainerView=findViewById(R.id.fragmentContainerView);
+        NavHostFragment navHostFragment=(NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 }

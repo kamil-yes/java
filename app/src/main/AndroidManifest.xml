@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Java">
         <activity
-            android:name=".EditAircraft"
+            android:name=".ListAircrafts"
             android:exported="false" />
         <activity
-            android:name=".AddAircraft"
+            android:name=".FavoritesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditAircraftActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddAircraftActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
