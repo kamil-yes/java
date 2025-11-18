@@ -18,4 +18,13 @@
     <string name="list_aircrafts">List aircrafts</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="viewing">Viewing</string>
+    <string name="edit">Edit</string>
+    <string name="nothing">NOTHING</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="password_confirm">Password confirm</string>
 </resources>

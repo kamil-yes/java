@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditAircraftActivity">
+    tools:context=".RegisterActivity">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/editing_aircraft"
+        android:text="@string/register"
         android:textSize="40sp"
         android:textColor="?color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,14 +22,14 @@
         app:layout_constraintVertical_bias="0.05"/>
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintWidth_percent="0.85"
         android:ems="10"
-        android:hint="@string/name"
-        android:inputType="text"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:textColor="?color"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,14 +40,14 @@
         app:layout_constraintVertical_bias="0.15" />
 
     <EditText
-        android:id="@+id/model"
+        android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintWidth_percent="0.85"
         android:ems="10"
-        android:hint="@string/model"
-        android:inputType="text"
+        android:hint="@string/password"
+        android:inputType="textVisiblePassword"
         android:textColor="?color"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,14 +58,14 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <EditText
-        android:id="@+id/creation_year"
+        android:id="@+id/password_confirm"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintWidth_percent="0.85"
         android:ems="10"
-        android:hint="@string/creation_year"
-        android:inputType="number"
+        android:hint="@string/password_confirm"
+        android:inputType="textVisiblePassword"
         android:textColor="?color"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,73 +75,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35" />
 
-    <EditText
-        android:id="@+id/inspection_year"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintWidth_percent="0.85"
-        android:ems="10"
-        android:hint="@string/inspection_year"
-        android:inputType="number"
-        android:textColor="?color"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
-
-    <EditText
-        android:id="@+id/price"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintWidth_percent="0.85"
-        android:ems="10"
-        android:hint="@string/price"
-        android:inputType="number"
-        android:textColor="?color"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
-
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintWidth_percent="0.85"
-        android:ems="10"
-        android:hint="@string/description"
-        android:inputType="text"
-        android:textColor="?color"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
-
     <Button
-        android:id="@+id/save"
-        android:layout_width="98dp"
+        android:id="@+id/register_button"
+        android:layout_width="110dp"
         android:layout_height="39dp"
         android:backgroundTint="@color/secondary"
-        android:text="@string/save"
+        android:text="@string/register"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
-
+        app:layout_constraintVertical_bias="0.45" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

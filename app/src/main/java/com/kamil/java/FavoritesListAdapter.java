@@ -2,7 +2,6 @@ package com.kamil.java;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +16,14 @@ import java.util.List;
 public class FavoritesListAdapter extends RecyclerView.Adapter<FavoritesListAdapter.ViewHolder> {
     private final Context context;
     private final LayoutInflater inflater;
+    private FavoritesFragment fragment;
     public List<Favorite> list;
 
-    public FavoritesListAdapter(Context context, List<Favorite> list) {
+    public FavoritesListAdapter(Context context, List<Favorite> list, FavoritesFragment fragment) {
         this.inflater = LayoutInflater.from(context);
         this.list = list;
         this.context = context;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -39,15 +40,10 @@ public class FavoritesListAdapter extends RecyclerView.Adapter<FavoritesListAdap
         holder.creationDate.setText(favorite.creationDate);
         holder.is_favorite.setChecked(true);
 
-        User user = new User(1, "");
-
         holder.is_favorite.setOnCheckedChangeListener((checkbox, isChecked) -> {
             DBAdapterFavorite adapter = new DBAdapterFavorite(context).open();
-            if (!isChecked) {
-                adapter.delete(user, favorite.aircraft);
-                list = adapter.getFavorites(user);
-                notifyDataSetChanged();
-            }
+            adapter.delete(MainActivity.user, favorite.aircraft);
+            fragment.onResume();
             adapter.close();
         });
     }

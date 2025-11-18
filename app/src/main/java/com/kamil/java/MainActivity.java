@@ -1,5 +1,6 @@
 package com.kamil.java;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
     protected BottomNavigationView bottomNavigationView;
     protected FragmentContainerView fragmentContainerView;
+    public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +24,15 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView=findViewById(R.id.bottomNavigationView);
-        fragmentContainerView=findViewById(R.id.fragmentContainerView);
-        NavHostFragment navHostFragment=(NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-        navController = navHostFragment.getNavController();
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        if(user == null) {
+            Intent intent = new Intent(this, RegisterActivity.class);
+            startActivity(intent);
+        }
+
+//        bottomNavigationView=findViewById(R.id.bottomNavigationView);
+//        fragmentContainerView=findViewById(R.id.fragmentContainerView);
+//        NavHostFragment navHostFragment=(NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+//        navController = navHostFragment.getNavController();
+//        NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 }

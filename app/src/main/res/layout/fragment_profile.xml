@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavoritesFragment"
+    tools:context=".ProfileFragment"
     android:background="?background">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/favorites"
+        android:text="@string/profile"
         android:textSize="40sp"
         android:textColor="?color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,29 +22,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.05" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        app:layout_constraintHeight_percent="0.85"
-        app:layout_constraintWidth_percent="1"
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layout_constraintVertical_bias="0.15" />
 
-    <TextView
-        android:id="@+id/emptyView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/nothing"
-        android:textSize="30sp"
-        android:textColor="?color"
-        android:gravity="center"
-        android:paddingTop="300dp"
-        android:visibility="gone"/>
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="98dp"
+        android:layout_height="39dp"
+        android:backgroundTint="@color/primary"
+        android:text="@string/logout"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

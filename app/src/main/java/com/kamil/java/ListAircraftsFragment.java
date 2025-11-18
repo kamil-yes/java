@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import java.util.List;
 public class ListAircraftsFragment extends Fragment {
     private AircraftsListAdapter adapter;
     private RecyclerView list;
+    private TextView emptyPlaceholder;
 
     @Nullable
     @Override
@@ -31,27 +33,32 @@ public class ListAircraftsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         list = view.findViewById(R.id.list);
+        emptyPlaceholder = view.findViewById(R.id.emptyView);
         Button addAircraft = view.findViewById(R.id.add);
 
         addAircraft.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), AddAircraftActivity.class);
             startActivity(intent);
         });
-        loadAircrafts();
-    }
-    @SuppressLint("NotifyDataSetChanged")
-    private void loadAircrafts() {
-        DBAdapterAircraft dbAdapterAircraft = new DBAdapterAircraft(requireContext()).open();
-        List<Aircraft> aircrafts = dbAdapterAircraft.getAircrafts();
-        dbAdapterAircraft.close();
-
-        adapter = new AircraftsListAdapter(requireContext(), aircrafts);
-        list.setAdapter(adapter);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        loadAircrafts();
+
+        DBAdapterAircraft dbAdapterAircraft = new DBAdapterAircraft(requireContext()).open();
+        List<Aircraft> aircrafts = dbAdapterAircraft.getAircrafts();
+        dbAdapterAircraft.close();
+
+        if (aircrafts.isEmpty()) {
+            emptyPlaceholder.setVisibility(View.VISIBLE);
+            list.setVisibility(View.GONE);
+        } else {
+            emptyPlaceholder.setVisibility(View.GONE);
+            list.setVisibility(View.VISIBLE);
+
+            adapter = new AircraftsListAdapter(requireContext(), aircrafts);
+            list.setAdapter(adapter);
+        }
     }
 }

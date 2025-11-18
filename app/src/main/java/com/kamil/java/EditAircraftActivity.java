@@ -18,10 +18,9 @@ public class EditAircraftActivity extends AppCompatActivity {
 
         Bundle args = getIntent().getExtras();
         assert args != null;
-        long id = args.getLong("id");
 
         DBAdapterAircraft dbAdapterAircraft = new DBAdapterAircraft(this).open();
-        Aircraft aircraft = dbAdapterAircraft.getAircraft(id);
+        Aircraft aircraft = dbAdapterAircraft.getAircraft(args.getLong("id"));
 
         EditText name = findViewById(R.id.name);
         EditText model = findViewById(R.id.model);
@@ -36,12 +35,6 @@ public class EditAircraftActivity extends AppCompatActivity {
         inspection_year.setText(String.valueOf(aircraft.yearOfInspection));
         price.setText(String.valueOf(aircraft.price));
         description.setText(String.valueOf(aircraft.description));
-
-        Button delete = findViewById(R.id.delete);
-        delete.setOnClickListener(v -> {
-            dbAdapterAircraft.delete(id);
-            this.finish();
-        });
 
         Button save = findViewById(R.id.save);
         save.setOnClickListener(v -> {
@@ -66,6 +59,7 @@ public class EditAircraftActivity extends AppCompatActivity {
                 aircraft.price = Integer.parseInt(price_value);
                 aircraft.description = description_value;
                 dbAdapterAircraft.update(aircraft);
+
                 this.finish();
             }
         });

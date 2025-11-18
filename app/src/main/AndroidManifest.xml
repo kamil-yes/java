@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Java">
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowAircraftActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListAircrafts"
             android:exported="false" />
         <activity

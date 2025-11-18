@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelperAircraft extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "database.db";
-    private static final int SCHEMA = 15;
+    private static final int SCHEMA = 18;
 
     public static final String TABLE = "aircrafts";
     public static final String COLUMN_ID = "id";

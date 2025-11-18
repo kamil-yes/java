@@ -36,25 +36,24 @@ public class AircraftsListAdapter extends RecyclerView.Adapter<AircraftsListAdap
         holder.description.setText(aircraft.description);
         holder.price.setText(String.valueOf(aircraft.price));
 
-        User user = new User(1, "");
         DBAdapterFavorite dbAdapterFavorite = new DBAdapterFavorite(context).open();
-        holder.is_favorite.setChecked(dbAdapterFavorite.isFavorite(user, aircraft));
+        holder.is_favorite.setChecked(dbAdapterFavorite.isFavorite(MainActivity.user, aircraft));
         dbAdapterFavorite.close();
 
         holder.is_favorite.setOnCheckedChangeListener((checkbox, isChecked) -> {
             DBAdapterFavorite adapter = new DBAdapterFavorite(context).open();
 
             if (isChecked) {
-                adapter.insert(user, aircraft);
+                adapter.insert(MainActivity.user, aircraft);
             } else {
-                adapter.delete(user, aircraft);
+                adapter.delete(MainActivity.user, aircraft);
             }
 
             adapter.close();
         });
         holder.itemView.setOnClickListener(v -> {
             Context context = inflater.getContext();
-            Intent intent = new Intent(context, EditAircraftActivity.class);
+            Intent intent = new Intent(context, ShowAircraftActivity.class);
             intent.putExtra("id", aircraft.id);
             context.startActivity(intent);
         });
