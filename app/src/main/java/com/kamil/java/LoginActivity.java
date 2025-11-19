@@ -11,40 +11,44 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-public class RegisterActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
-
-    private EditText passwordConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        passwordConfirm = findViewById(R.id.password_confirm);
         Button registerButton = findViewById(R.id.register_button);
+        Button loginButton = findViewById(R.id.login_button);
 
         registerButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, RegisterActivity.class);
+            startActivity(intent);
+        });
+
+        loginButton.setOnClickListener(v -> {
             String email_value = email.getText().toString();
             String password_value = password.getText().toString();
-            String password_confirm_value = passwordConfirm.getText().toString();
 
             if(email_value.isEmpty()) Toast.makeText(this, "Please, fill the email.", Toast.LENGTH_SHORT).show();
-            else if(!Patterns.EMAIL_ADDRESS.matcher(email_value).matches()) Toast.makeText(this, "Please, write a correct email.", Toast.LENGTH_SHORT).show();
             else if(password_value.isEmpty()) Toast.makeText(this, "Please, fill the password.", Toast.LENGTH_SHORT).show();
-            else if(password_value.length() < 6) Toast.makeText(this, "Please, write a correct password (More 6 chars).", Toast.LENGTH_SHORT).show();
-            else if(password_confirm_value.isEmpty()) Toast.makeText(this, "Please, fill the password confirmation.", Toast.LENGTH_SHORT).show();
-            else if(!password_value.equals(password_confirm_value)) Toast.makeText(this, "Please, write a correct password confirmation (Equals password)", Toast.LENGTH_SHORT).show();
             else {
                 DBAdapterUser dbAdapterUser = new DBAdapterUser(this).open();
-                dbAdapterUser.insert(email_value, password_value);
                 MainActivity.user = dbAdapterUser.login(email_value, password_value);
                 dbAdapterUser.close();
+                if(MainActivity.user == null) {
+                    Toast.makeText(this, "No such user.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = getSharedPreferences("session", MODE_PRIVATE).edit();
                 editor.putLong("user_id", MainActivity.user.id);

@@ -29,7 +29,24 @@ public class DBAdapterUser {
         return db.insert(DBHelperUser.TABLE, null, cv);
     }
 
-    public User getUser(String email, String password) {
+    public User getUser(long id) {
+        Cursor cursor = db.query(
+                DBHelperUser.TABLE,
+                null,
+                DBHelperUser.COLUMN_ID + " = ?",
+                new String[] {String.valueOf(id)},
+                null, null, null
+        );
+        User User = null;
+        if(cursor.moveToFirst()) {
+            String email = cursor.getString(cursor.getColumnIndexOrThrow(DBHelperUser.COLUMN_EMAIL));
+            User = new User(id, email);
+        }
+        cursor.close();
+        return User;
+    }
+
+    public User login(String email, String password) {
         Cursor cursor = db.query(
                 DBHelperUser.TABLE,
                 null,
@@ -40,6 +57,7 @@ public class DBAdapterUser {
         User User = null;
         if(cursor.moveToFirst()) {
             long id = cursor.getLong(cursor.getColumnIndexOrThrow(DBHelperUser.COLUMN_ID));
+
             User = new User(id, email);
         }
         cursor.close();

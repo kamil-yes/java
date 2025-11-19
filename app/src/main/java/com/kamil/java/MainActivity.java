@@ -18,21 +18,28 @@ public class MainActivity extends AppCompatActivity {
     protected FragmentContainerView fragmentContainerView;
     public static User user;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
 
         if(user == null) {
-            Intent intent = new Intent(this, RegisterActivity.class);
-            startActivity(intent);
+            long userId = getSharedPreferences("session", MODE_PRIVATE).getLong("user_id", 0);
+            if(userId != 0) {
+                DBAdapterUser dbAdapterUser = new DBAdapterUser(this).open();
+                user = dbAdapterUser.getUser(userId);
+            } else {
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                return;
+            }
         }
 
-//        bottomNavigationView=findViewById(R.id.bottomNavigationView);
-//        fragmentContainerView=findViewById(R.id.fragmentContainerView);
-//        NavHostFragment navHostFragment=(NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-//        navController = navHostFragment.getNavController();
-//        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        fragmentContainerView = findViewById(R.id.fragmentContainerView);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 }

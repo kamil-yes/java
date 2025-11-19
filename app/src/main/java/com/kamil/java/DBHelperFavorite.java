@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelperFavorite extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "database.db";
-    private static final int SCHEMA = 18;
+    private static final int SCHEMA = 19;
 
     public static final String TABLE = "favorites";
     public static final String COLUMN_USER_ID = "user_id";
